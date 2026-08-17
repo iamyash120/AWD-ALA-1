@@ -1,0 +1,5 @@
+{
+  "errors": [],
+  "log": "<div class=\"ok\">[11:50:22 am] Render complete — no page reload occurred.</div><div class=\"ok\">[11:50:22 am] Resolved → London (51.5085, -0.1257)</div><div class=\"\">[11:50:22 am] WEATHER request → OpenWeatherMap for \"London\"</div>",
+  "display": "\n    <div class=\"place-row\">\n      <div>\n        <p class=\"place-name\">London</p>\n        <p class=\"place-meta\">GB · 51.5085, -0.1257</p>\n      </div>\n      <div class=\"updated\"><span class=\"dot\"></span>live · 11:50:22 am</div>\n    </div>\n\n    <div class=\"temp-hero\">\n      <div class=\"big\">20°C</div>\n      <div class=\"cond\">clear sky</div>\n    </div>\n\n    <div class=\"grid-stats\">\n      <div class=\"stat\"><div class=\"k\">Wind speed</div><div class=\"v\">1.54 m/s</div></div>\n      <div class=\"stat\"><div class=\"k\">Wind direction</div><div class=\"v\">40°</div></div>\n      <div class=\"stat\"><div class=\"k\">Humidity</div><div class=\"v\">78%</div></div>\n      <div class=\"stat\"><div class=\"k\">Timezone TZ</div><div class=\"v\" style=\"font-size:13px;\">UTC+1</div></div>\n    </div>\n  "
+}

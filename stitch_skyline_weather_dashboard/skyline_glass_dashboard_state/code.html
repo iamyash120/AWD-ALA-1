@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SKYLINE — Glass Dashboard State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "status-error": "#E45B5B",
+                        "primary-fixed-dim": "#4edbcc",
+                        "surface-container-low": "#eef4ff",
+                        "on-secondary-fixed-variant": "#004689",
+                        "primary-fixed": "#70f8e8",
+                        "tertiary": "#964919",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed": "#d5e3ff",
+                        "outline-variant": "#bbcac6",
+                        "on-primary-fixed-variant": "#005049",
+                        "on-primary-container": "#005049",
+                        "error": "#ba1a1a",
+                        "text-secondary": "#667085",
+                        "on-tertiary": "#ffffff",
+                        "border-subtle": "#E4E7EC",
+                        "on-background": "#131c26",
+                        "weather-amber": "#F5A84B",
+                        "error-container": "#ffdad6",
+                        "surface-container-high": "#e0e9f7",
+                        "on-primary-fixed": "#00201d",
+                        "secondary": "#005eb3",
+                        "background-base": "#F5F7F8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#3c4947",
+                        "inverse-primary": "#4edbcc",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-dim": "#d2dbe9",
+                        "surface-secondary": "#F8FAFB",
+                        "primary": "#006a61",
+                        "tertiary-container": "#ff9c65",
+                        "secondary-fixed-dim": "#a7c8ff",
+                        "surface-container-highest": "#dae3f1",
+                        "inverse-surface": "#28313c",
+                        "inverse-on-surface": "#e9f1ff",
+                        "status-success": "#35B98A",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#001b3c",
+                        "surface-variant": "#dae3f1",
+                        "on-secondary-container": "#00376d",
+                        "surface-container": "#e5effd",
+                        "on-surface": "#131c26",
+                        "on-tertiary-container": "#773201",
+                        "on-tertiary-fixed-variant": "#773201",
+                        "surface-primary": "#FFFFFF",
+                        "surface-tint": "#006a61",
+                        "outline": "#6c7a77",
+                        "on-tertiary-fixed": "#331100",
+                        "primary-container": "#35c9ba",
+                        "background": "#f8f9ff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f8f9ff",
+                        "text-muted": "#98A2B3",
+                        "secondary-container": "#60a2fe",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "on-error-container": "#93000a"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin-desktop": "48px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px",
+                        "unit": "4px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "display-temp-mobile": ["Inter"],
+                        "display-temp": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    fontSize: {
+                        "display-temp-mobile": ["56px", { lineHeight: "60px", letterSpacing: "-0.03em", fontWeight: "300" }],
+                        "display-temp": ["84px", { lineHeight: "92px", letterSpacing: "-0.04em", fontWeight: "300" }],
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.05em", fontWeight: "600" }],
+                        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+                        "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-reflection {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-reflection::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: left 0.7s ease-in-out;
+        }
+        
+        .glass-reflection:hover::before {
+            left: 150%;
+        }
+
+        .bg-layer {
+            transition: opacity 3s ease-in-out;
+            will-change: transform, opacity;
+        }
+
+        .pulse-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .5; transform: scale(1.1); }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface overflow-x-hidden antialiased">
+<!-- Background System -->
+<div class="fixed inset-0 w-full h-full z-0 overflow-hidden bg-black" id="bg-container">
+<div class="absolute inset-0 bg-black/30 z-10"></div> <!-- Readability Overlay -->
+<img alt="Morning" class="bg-layer absolute inset-0 w-full h-full object-cover opacity-100 scale-105" data-alt="A bright morning sky with gentle clouds and soft sunlight illuminating a serene landscape, highly detailed, realistic, optimistic mood." id="bg-morning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMDXeskkEglK8o70zArWM5dV74-OPvsV4yUgkFWFdoBPKWX9oG4hHly71ObnqZtZCfFkeB2SjBo7Y0irg5jBg9RQzfBOk-7cmCJZEoxe1MEe54Hrn9--e60JWGV1lT8wmbulVup3s8sK314WrW86N275JEZirjZFeJlmbKJgTxodElXbrQUX9ywdSZJlvYrPtXW0Yni0qN5uoFMdeg41rlYxqF5l3RX0pfEalF-SOtghUjbaZGG1_2IA"/>
+<img alt="Afternoon" class="bg-layer absolute inset-0 w-full h-full object-cover opacity-0 scale-105" data-alt="A clear afternoon sky with bright sunshine and scattered fluffy white clouds over an expansive vista, vibrant, modern light-mode aesthetic." id="bg-afternoon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmFriaBxnM-dB7l7iEfUDs82QTXRfV8MV1FmnG9HzBZ6IFUbPsQWeUd9CYiLOk4mrJK2W-fPZHi5dIwW8ynCVoGm_vlBvVsJlWq3fUITZUU7flxeTb7d_-YgeXIPYqHMlf0M8LuOZCWBXlntGxrP7QyONwtdwStPO3mWGzUGLzVDRFeOMuOrukIjZyythgJeaLsjrp5D3O053W-FGXjGRtZ_AS0_RMkgrEPsV98zyDkTK9nwS_bgxDcA"/>
+<img alt="Evening" class="bg-layer absolute inset-0 w-full h-full object-cover opacity-0 scale-105" data-alt="A dramatic sunset with vibrant hues of orange, pink, and purple painting the clouds, deep contrast, striking cinematic mood." id="bg-evening" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO5ZOBX1DZyyfoNc7B_tX1IP_E5-SCqGd_mtrlkWqsIks8oFkEHRnCJWnJSEaf2VjWFhNHh29Syhk1kheAXiscXtUVyUek-DiN0QDxdpJSSb2VlYRN2rnrwZ6VPpGBkKX2-6jNxzEB4Osai9MOt1q9JU73sDzGWmXzT5O6OlCkqaKF90n8e9DAxOfI9JoEN4nv5SVWo4ge1dQZ2xBioE6enb2At66IblWfmejCY_423GrQ40knkhTDzA"/>
+<img alt="Night" class="bg-layer absolute inset-0 w-full h-full object-cover opacity-0 scale-105" data-alt="A serene night sky filled with a glowing moon, dark blue tones, peaceful and slightly mysterious atmosphere, high-end professional aesthetic." id="bg-night" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsOShQ4kn_IyvgpaFksrEZ0sl7VmZQ803dPPlGyL4IFLdu0w7V5jZMpJboFOfydb55LBcVNv3nZ-jaWiC2OAbtosOFHGT5SQf0NCUPuciffo-uSphmL7O07DkG_2cqxxf85VViO7BNWu8oeLrgCfC0LSUgwWtNyQ9fO_axPEWcbnRT6lzatDztFH0cd0JWfnjX6qtiNTmJHB7HFxAgjlh1d9W73vfsIBZWpmv_TnkmpErjL1E96fIxoA"/>
+</div>
+<!-- Navigation Shell (TopAppBar) -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-white/10 backdrop-blur-md border-b border-white/20">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-semibold tracking-tight text-white">SKYLINE</span>
+<div class="w-2 h-2 rounded-full bg-status-success pulse-dot ml-2"></div>
+</div>
+<div class="hidden md:flex space-x-8">
+<a class="text-white font-bold border-b-2 border-white pb-1 font-label-md text-label-md" href="#">Dashboard</a>
+<a class="text-white/70 hover:text-white transition-colors duration-200 font-label-md text-label-md" href="#">Maps</a>
+<a class="text-white/70 hover:text-white transition-colors duration-200 font-label-md text-label-md" href="#">Historical</a>
+<a class="text-white/70 hover:text-white transition-colors duration-200 font-label-md text-label-md" href="#">Alerts</a>
+</div>
+<div class="flex items-center space-x-4 text-white">
+<span class="material-symbols-outlined cursor-pointer hover:scale-[0.98] transition-transform duration-150">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:scale-[0.98] transition-transform duration-150">settings</span>
+<div class="w-8 h-8 rounded-full bg-white/20 border border-white/30 flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="relative z-20 w-full min-h-screen pt-24 pb-12 px-margin-mobile md:px-margin-desktop flex flex-col max-w-container-max mx-auto text-white">
+<!-- Header -->
+<header class="mb-12 text-center md:text-left mt-8">
+<h1 class="font-headline-lg text-headline-lg font-semibold tracking-tight">Bhavnagar, IN · 21.7667, 72.15</h1>
+<div class="flex items-center justify-center md:justify-start gap-2 mt-2 opacity-80">
+<div class="w-2 h-2 rounded-full bg-status-success pulse-dot"></div>
+<span class="font-label-md text-label-md tracking-wider">LIVE · 12:09 PM</span>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-gutter flex-grow">
+<!-- Weather Hero -->
+<div class="md:col-span-8 glass-panel glass-reflection rounded-xl p-8 flex flex-col justify-between min-h-[320px]">
+<div class="flex justify-between items-start">
+<div>
+<span class="font-display-temp-mobile md:font-display-temp text-display-temp-mobile md:text-display-temp">28°C</span>
+<div class="font-headline-md text-headline-md font-medium mt-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-4xl">rainy</span>
+                            Light Rain
+                        </div>
+</div>
+<div class="glass-panel px-4 py-2 rounded-full flex items-center gap-2 text-sm backdrop-blur-md bg-white/5">
+<span class="material-symbols-outlined text-lg">sync</span>
+<span class="font-label-sm text-label-sm">Live updates enabled</span>
+</div>
+</div>
+<!-- Today's Conditions Timeline -->
+<div class="mt-12 pt-8 border-t border-white/20">
+<h3 class="font-label-md text-label-md text-white/70 mb-4 uppercase tracking-widest">Today's Conditions</h3>
+<div class="flex justify-between items-center max-w-2xl">
+<div class="flex flex-col items-center gap-2">
+<span class="font-label-sm text-label-sm text-white/70">Morning</span>
+<span class="material-symbols-outlined text-2xl">light_mode</span>
+<span class="font-body-lg text-body-lg font-medium">28°</span>
+</div>
+<div class="w-16 h-px bg-white/20 hidden sm:block"></div>
+<div class="flex flex-col items-center gap-2">
+<span class="font-label-sm text-label-sm text-white/70">Afternoon</span>
+<span class="material-symbols-outlined text-2xl">partly_cloudy_day</span>
+<span class="font-body-lg text-body-lg font-medium">30°</span>
+</div>
+<div class="w-16 h-px bg-white/20 hidden sm:block"></div>
+<div class="flex flex-col items-center gap-2">
+<span class="font-label-sm text-label-sm text-white/70">Evening</span>
+<span class="material-symbols-outlined text-2xl">cloud</span>
+<span class="font-body-lg text-body-lg font-medium">27°</span>
+</div>
+<div class="w-16 h-px bg-white/20 hidden sm:block"></div>
+<div class="flex flex-col items-center gap-2">
+<span class="font-label-sm text-label-sm text-white/70">Night</span>
+<span class="material-symbols-outlined text-2xl">rainy</span>
+<span class="font-body-lg text-body-lg font-medium">24°</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Glass Metric Grid -->
+<div class="md:col-span-4 grid grid-cols-2 gap-4">
+<div class="glass-panel glass-reflection rounded-xl p-5 flex flex-col justify-center">
+<span class="material-symbols-outlined text-white/60 mb-2">air</span>
+<span class="font-label-sm text-label-sm text-white/60 uppercase tracking-wider mb-1">Wind Speed</span>
+<span class="font-headline-md text-headline-md">3.09 m/s</span>
+</div>
+<div class="glass-panel glass-reflection rounded-xl p-5 flex flex-col justify-center">
+<span class="material-symbols-outlined text-white/60 mb-2">explore</span>
+<span class="font-label-sm text-label-sm text-white/60 uppercase tracking-wider mb-1">Direction</span>
+<span class="font-headline-md text-headline-md">230°</span>
+</div>
+<div class="glass-panel glass-reflection rounded-xl p-5 flex flex-col justify-center">
+<span class="material-symbols-outlined text-white/60 mb-2">humidity_percentage</span>
+<span class="font-label-sm text-label-sm text-white/60 uppercase tracking-wider mb-1">Humidity</span>
+<span class="font-headline-md text-headline-md">74%</span>
+</div>
+<div class="glass-panel glass-reflection rounded-xl p-5 flex flex-col justify-center">
+<span class="material-symbols-outlined text-white/60 mb-2">schedule</span>
+<span class="font-label-sm text-label-sm text-white/60 uppercase tracking-wider mb-1">Timezone</span>
+<span class="font-headline-md text-headline-md">UTC+5.5</span>
+</div>
+</div>
+<!-- Live Activity Console -->
+<div class="md:col-span-12 glass-panel rounded-xl p-6 font-mono text-sm">
+<div class="flex items-center gap-2 mb-4 border-b border-white/10 pb-2">
+<span class="material-symbols-outlined text-lg">terminal</span>
+<span class="font-semibold tracking-wider uppercase text-white/80">Live Activity Console</span>
+</div>
+<div class="space-y-2 text-white/70 h-32 overflow-y-auto">
+<div class="flex gap-4"><span class="text-white/50">12:09:00</span><span>[SYS] Connection established to BHV-1.</span></div>
+<div class="flex gap-4"><span class="text-white/50">12:09:05</span><span class="text-primary-fixed-dim">[DAT] Telemetry sync successful. Precipitation detected.</span></div>
+<div class="flex gap-4"><span class="text-white/50">12:09:12</span><span>[SYS] Calibrating wind sensors...</span></div>
+<div class="flex gap-4"><span class="text-white/50">12:09:15</span><span>[SYS] Awaiting next packet...</span></div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Parallax Effect
+        document.addEventListener('mousemove', (e) => {
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            
+            const bgLayers = document.querySelectorAll('.bg-layer');
+            bgLayers.forEach(layer => {
+                layer.style.transform = `scale(1.05) translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Background Cycle Logic (Simplified for Demo)
+        const bgs = ['bg-morning', 'bg-afternoon', 'bg-evening', 'bg-night'];
+        let currentBgIndex = 0;
+
+        function cycleBackgrounds() {
+            // Hide current
+            document.getElementById(bgs[currentBgIndex]).classList.remove('opacity-100');
+            document.getElementById(bgs[currentBgIndex]).classList.add('opacity-0');
+            
+            // Increment
+            currentBgIndex = (currentBgIndex + 1) % bgs.length;
+            
+            // Show next
+            document.getElementById(bgs[currentBgIndex]).classList.remove('opacity-0');
+            document.getElementById(bgs[currentBgIndex]).classList.add('opacity-100');
+        }
+
+        // Cycle every 8 seconds for demonstration purposes
+        setInterval(cycleBackgrounds, 8000);
+    </script>
+</body></html>

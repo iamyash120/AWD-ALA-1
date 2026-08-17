@@ -1,0 +1,21 @@
+{
+  "name": "ada-ala-1",
+  "version": "1.0.0",
+  "description": "Skyline - Live Weather AJAX API Integration",
+  "main": "ajax-api-integration-task/index.html",
+  "scripts": {
+    "dev": "npx http-server ./ajax-api-integration-task -o /weather-ajax-demo.html",
+    "start": "npx http-server ./ajax-api-integration-task -o /weather-ajax-demo.html",
+    "test": "cd ajax-api-integration-task && node test_script.js"
+  },
+  "keywords": [
+    "ajax",
+    "weather",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsdom": "^30.0.1"
+  }
+}
